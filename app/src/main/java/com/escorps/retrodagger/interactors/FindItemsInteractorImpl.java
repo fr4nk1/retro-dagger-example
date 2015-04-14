@@ -15,8 +15,8 @@ public class FindItemsInteractorImpl implements FindItemsInteractor {
 
     @Override public void findItems(final OnFinishedListener listener) {
 
-        MyApi myAddress = RestApiAdapter.getInstance().create(MyApi.class);
-        myAddress.getPets(new Callback<List<PetModel>>() {
+        MyApi getPetsApi = RestApiAdapter.getInstance().create(MyApi.class);
+        getPetsApi.getPets(new Callback<List<PetModel>>() {
 
             @Override
             public void success(List<PetModel> petModelList, Response response) {
