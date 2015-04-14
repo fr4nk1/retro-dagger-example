@@ -2,6 +2,7 @@ package com.escorps.retrodagger;
 
 import android.app.Application;
 import com.escorps.retrodagger.domain.AnalyticsManager;
+import com.escorps.retrodagger.modules.AppModule;
 
 import java.util.Arrays;
 import java.util.List;

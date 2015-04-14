@@ -1,7 +1,8 @@
-package com.escorps.retrodagger;
+package com.escorps.retrodagger.modules;
 
 import android.app.Application;
 
+import com.escorps.retrodagger.App;
 import com.escorps.retrodagger.domain.DomainModule;
 import com.escorps.retrodagger.interactors.InteractorsModule;
 

@@ -1,6 +1,5 @@
 package com.escorps.retrodagger.modules;
 
-import com.escorps.retrodagger.AppModule;
 import com.escorps.retrodagger.adapter.RecyclerViewAdapter;
 import com.escorps.retrodagger.interactors.FindItemsInteractor;
 import com.escorps.retrodagger.ui.main.MainActivity;
