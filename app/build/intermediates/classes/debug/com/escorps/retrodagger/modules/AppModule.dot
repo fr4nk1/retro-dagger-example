@@ -1,0 +1,5 @@
+digraph G1 {
+  concentrate = true;
+  AnalyticsManager -> Application;
+  App -> AnalyticsManager;
+}
