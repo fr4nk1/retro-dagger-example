@@ -2,20 +2,14 @@ package com.escorps.retrodagger.modules;
 
 import com.escorps.retrodagger.adapter.RecyclerViewAdapter;
 import com.escorps.retrodagger.interactors.FindItemsInteractor;
-import com.escorps.retrodagger.ui.main.MainActivity;
 import com.escorps.retrodagger.ui.main.MainPresenter;
 import com.escorps.retrodagger.ui.main.MainPresenterImpl;
 import com.escorps.retrodagger.ui.main.MainView;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
-@Module(
-        injects = MainActivity.class,
-        addsTo = AppModule.class
-)
+@Module
 public class MainModule {
 
     private MainView view;
@@ -24,16 +18,16 @@ public class MainModule {
         this.view = view;
     }
 
-    @Provides @Singleton public MainView provideView() {
+    @Provides public MainView provideView() {
         return view;
     }
 
-    @Provides @Singleton
+    @Provides
     public MainPresenter providePresenter(MainView mainView, FindItemsInteractor findItemsInteractor) {
         return new MainPresenterImpl(mainView, findItemsInteractor);
     }
 
-    @Provides @Singleton
+    @Provides
     public RecyclerViewAdapter provideRecyclerViewAdapter (){
         return new RecyclerViewAdapter();
     }

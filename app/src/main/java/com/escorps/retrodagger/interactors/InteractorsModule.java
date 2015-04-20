@@ -3,9 +3,7 @@ package com.escorps.retrodagger.interactors;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(
-        library = true
-)
+@Module
 public class InteractorsModule {
 
     @Provides public FindItemsInteractor provideFindItemsInteractor() {

@@ -1,34 +1,40 @@
 package com.escorps.retrodagger;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.escorps.retrodagger.component.AppComponent;
+import com.escorps.retrodagger.component.DaggerAppComponent;
 import com.escorps.retrodagger.domain.AnalyticsManager;
 import com.escorps.retrodagger.modules.AppModule;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.inject.Inject;
-
-import dagger.ObjectGraph;
 
 public class App extends Application {
 
-    private ObjectGraph objectGraph;
+    private AppComponent component;
+
     @Inject
     AnalyticsManager analyticsManager;
 
     @Override public void onCreate() {
         super.onCreate();
-        objectGraph = ObjectGraph.create(getModules().toArray());
-        objectGraph.inject(this);
+        setupGraph();
         analyticsManager.registerAppEnter();
     }
 
-    private List<Object> getModules() {
-        return Arrays.<Object>asList(new AppModule(this));
+    private void setupGraph() {
+        component = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+        component.inject(this);
     }
 
-    public ObjectGraph createScopedGraph(Object... modules) {
-        return objectGraph.plus(modules);
+    public AppComponent component() {
+        return component;
+    }
+
+    public static App get(Context context) {
+        return (App) context.getApplicationContext();
     }
 }

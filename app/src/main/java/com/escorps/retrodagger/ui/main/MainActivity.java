@@ -8,11 +8,12 @@ import android.widget.ProgressBar;
 
 import com.escorps.retrodagger.R;
 import com.escorps.retrodagger.adapter.RecyclerViewAdapter;
+import com.escorps.retrodagger.component.AppComponent;
+import com.escorps.retrodagger.component.DaggerMainComponent;
 import com.escorps.retrodagger.models.PetModel;
 import com.escorps.retrodagger.modules.MainModule;
 import com.escorps.retrodagger.ui.common.BaseActivity;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,9 +45,15 @@ public class MainActivity extends BaseActivity implements MainView {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 
-    @Override protected List<Object> getModules() {
-        return Arrays.<Object>asList(new MainModule(this));
+    @Override
+    protected void setupComponent(AppComponent appComponent) {
+        DaggerMainComponent.builder()
+                .appComponent(appComponent)
+                .mainModule(new MainModule(this))
+                .build()
+                .inject(this);
     }
+
 
     @Override protected void onResume() {
         super.onResume();
